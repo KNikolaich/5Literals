@@ -24,10 +24,11 @@ internal class TreeBuilder(ISourceDictionary sourceDictionary)
     {
         _source = sourceDictionary.GetWords();
         
-        foreach (string word in _source)
+        foreach (string wordSource in _source)
         {
+            var word = wordSource.Trim();
             // для каждого слова создаем новую коллекцию, чтобы независимо от предыдущих слов считать
-            
+
             _collectionLists.Add(new WordList(word));
 
             foreach (WordList wordList in _collectionLists.ToArray())
