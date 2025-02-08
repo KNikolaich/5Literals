@@ -16,15 +16,11 @@ internal class TreeBuilder(ISourceDictionary sourceDictionary)
      * Берем следуеюее слово и идем в начало алгоритма     
      */
 
-    ICollection<string> _source = new List<string>(); // 
-
     ICollection<WordList> _collectionLists = new HashSet<WordList>();
 
     internal ICollection<WordList> BuildTree()
     {
-        _source = sourceDictionary.GetWords();
-        
-        foreach (string wordSource in _source)
+        foreach (string wordSource in sourceDictionary.GetWords().ToList())
         {
             var word = wordSource.Trim();
             // для каждого слова создаем новую коллекцию, чтобы независимо от предыдущих слов считать

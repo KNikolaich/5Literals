@@ -2,12 +2,12 @@
 
 internal interface ISourceDictionary
 {
-    ICollection<string> GetWords();
+    IEnumerable<string> GetWords();
 }
 
 internal record SourceMemoryDict : ISourceDictionary
 {
-    ICollection<string> ISourceDictionary.GetWords()
+    IEnumerable<string> ISourceDictionary.GetWords()
     {
         return
             @"места
