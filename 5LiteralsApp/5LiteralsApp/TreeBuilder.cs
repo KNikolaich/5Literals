@@ -1,6 +1,6 @@
 ﻿namespace _5LiteralsApp;
 
-internal class TreeBuilder(ISourceDictionary sourceDictionary)
+internal class TreeBuilder
 {
     /*
      * Берем слово, создаем набор слов с алфавитом (если первое, иначе, клонируем с исходника)
@@ -15,31 +15,29 @@ internal class TreeBuilder(ISourceDictionary sourceDictionary)
      * если есть ещё слова, ->
      * Берем следуеюее слово и идем в начало алгоритма     
      */
-
-    ICollection<WordList> _collectionLists = new HashSet<WordList>();
-
-    internal ICollection<WordList> BuildTree()
+    internal static ICollection<WordList> BuildTrees(ISourceDictionary sourceDictionary)
     {
-        foreach (string wordSource in sourceDictionary.GetWords().ToList())
+        var collectionLists = new HashSet<WordList>();
+        foreach (string wordSource in sourceDictionary.GetWords())
         {
             var word = wordSource.Trim();
             // для каждого слова создаем новую коллекцию, чтобы независимо от предыдущих слов считать
 
-            _collectionLists.Add(new WordList(word));
+            collectionLists.Add(new WordList(word));
 
-            foreach (WordList wordList in _collectionLists.ToArray())
+            foreach (WordList wordList in collectionLists.ToArray())
             {
-                if (wordList.Alphabet.HasAllLiterals(word))
+                if (wordList.Alphabet.HasAllLiterals(word) || wordList.Count == 5)
                 {
                     wordList.AddWord(word);
 
                     // создаем новый worldList, добавляем его в коллекцию и минусуем ему в алфавите буквы
                     var cloneWordList = wordList.Clone();
 
-                    _collectionLists.Add(cloneWordList);
+                    collectionLists.Add(cloneWordList);
                 }
             }
         }
-        return _collectionLists;
+        return collectionLists;
     }
 }

@@ -1,13 +1,13 @@
 ﻿namespace _5LiteralsApp;
 
-internal record SourceFileDict : ISourceDictionary
+internal record SourceFileDictionary : ISourceDictionary
 {
-
     public IEnumerable<string> GetWords()
     {
-        if (File.Exists("russian4.txt"))
+        var fileName = "russian4.txt";
+        if (File.Exists(fileName))
         {
-            string[] lines = File.ReadAllLines("russian4.txt");
+            string[] lines = File.ReadAllLines(fileName);
             foreach (string s in lines
                          .Select(x => x.Trim(' ', '_'))
                          .Where(x => x.Length == 5 && !x.Contains('-') && x.Distinct().Count() >= 4))

@@ -26,7 +26,7 @@ internal static class AlphabetExtender
         => alphabet.Literals.Count > word.Length && word.All(alphabet.Literals.Contains);
 
     /// <summary> Убрать все буквы из нашего набора </summary>
-    internal static void MinusLiterals(this Alphabet alphabet, string word)
+    internal static void RemoveLiterals(this Alphabet alphabet, string word)
     {
         foreach (var literal in word)
         {
