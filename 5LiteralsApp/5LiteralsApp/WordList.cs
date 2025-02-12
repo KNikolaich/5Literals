@@ -14,6 +14,7 @@ internal class WordList : List<WordEntity>
     private WordList(WordList wordList)
     {
         Alphabet = new Alphabet(wordList.Alphabet.Literals);
+        AddRange(wordList);
     }
 
     internal Alphabet Alphabet { get; set; }
@@ -38,7 +39,9 @@ internal class WordList : List<WordEntity>
     {
         return string.Join(", ", this.OrderByDescending(x=> x.Wight)) 
                + " Count:" 
-               + this.SelectMany(x => x.Word.ToCharArray()).Distinct().Count();
+               + this.SelectMany(x => x.Word.ToCharArray()).Distinct().Count()
+               + " Wight:"
+               + this.Sum(x => x.Wight);
     }
 }
 

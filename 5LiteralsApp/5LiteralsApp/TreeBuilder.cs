@@ -1,4 +1,6 @@
-﻿namespace _5LiteralsApp;
+﻿using System.Collections.Generic;
+
+namespace _5LiteralsApp;
 
 internal class TreeBuilder
 {
@@ -22,32 +24,35 @@ internal class TreeBuilder
     /// <returns></returns>
     internal static ICollection<WordList> BuildTrees(ISourceDictionary sourceDictionary)
     {
-        var collectionLists = new HashSet<WordList>();
-        var pastWordList = new List<WordEntity>();
-        foreach (var word in sourceDictionary.GetWords())
-        {
-            // для каждого слова создаем новую коллекцию, чтобы независимо от предыдущих слов считать
-
-            var currentWordList = new WordList(word);
-            collectionLists.Add(currentWordList);
-
-            foreach (WordList wordList in collectionLists.ToArray())
-            {
-                CheckWord(wordList, word, collectionLists);
-            }
-            pastWordList.ForEach(x=> CheckWord(currentWordList, x, collectionLists));
-            pastWordList.Add(word);
-        }
-        return collectionLists;
+        var words = sourceDictionary.GetWords().ToList();
+        // для каждого слова создаем новую коллекцию, чтобы независимо от предыдущих слов считать
+        var collectionLists = words.Select(w=> new WordList(w)).ToList();
+        
+        return CreateCollectionList(words, collectionLists);
     }
 
-    private static void CheckWord(WordList wordList, WordEntity word, HashSet<WordList> collectionLists)
+    private static List<WordList> CreateCollectionList(IEnumerable<WordEntity> words, List<WordList> collectionLists)
     {
-        if (wordList.Alphabet.HasAllLiterals(word.Word))
+        var result = new List<WordList>();
+        foreach (var word in words)
         {
-            wordList.AddWord(word);
-            // создаем новый worldList, добавляем его в коллекцию и минусуем ему в алфавите буквы
-            collectionLists.Add(wordList.Clone());
+            foreach (var wordList in collectionLists)
+            {
+                if (wordList.Alphabet.HasAllLiterals(word.Word))
+                {
+                    // создаем новый worldList, добавляем его в коллекцию и минусуем ему в алфавите буквы
+                    var clone = wordList.Clone();
+                    clone.AddWord(word);
+                    if (clone.Count >= 4)
+                    {
+                        result.Add(clone);
+                    }
+                    
+                    result.AddRange(CreateCollectionList(words, new List<WordList> { clone }));
+                }
+            }
         }
+
+        return result;
     }
 }

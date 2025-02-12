@@ -8,7 +8,7 @@ internal record SourceFileDictionary : ISourceDictionary
             .Select(x => x.Trim(' ', '_'))
             .Where(x => x.Length == 5 && !x.Contains('-') && x.Distinct().Count() == 5)
             .Select(w => new WordEntity(w.ToLower()))
-            //.OrderByDescending(x => x.Wight)
+            .OrderBy(x => x.Wight)
             ;
     }
 }

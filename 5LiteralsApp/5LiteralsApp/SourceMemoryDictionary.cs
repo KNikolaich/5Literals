@@ -5,7 +5,7 @@ internal interface ISourceDictionary
     IEnumerable<WordEntity> GetWords();
 }
 
-internal record SourceMemoryDict : ISourceDictionary
+internal record SourceMemoryDictionary : ISourceDictionary
 {
     IEnumerable<WordEntity> ISourceDictionary.GetWords()
     {
@@ -548,8 +548,7 @@ internal record SourceMemoryDict : ISourceDictionary
 щегол
 жизнь
 хруст
-тикер
-".Split(Environment.NewLine)
+тикер".Split(Environment.NewLine)
                 .Select(x=> new WordEntity(x));
     }
 }
