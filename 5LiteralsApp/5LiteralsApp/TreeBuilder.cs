@@ -23,10 +23,10 @@ internal class TreeBuilder
     internal static ICollection<WordList> BuildTrees(ISourceDictionary sourceDictionary)
     {
         var collectionLists = new HashSet<WordList>();
-        var pastWordList = new List<string>();
+        var pastWordList = new List<WordEntity>();
         foreach (string wordSource in sourceDictionary.GetWords())
         {
-            var word = wordSource.Trim();
+            var word = new WordEntity(wordSource.Trim());
             // для каждого слова создаем новую коллекцию, чтобы независимо от предыдущих слов считать
 
             var currentWordList = new WordList(word);
@@ -42,9 +42,9 @@ internal class TreeBuilder
         return collectionLists;
     }
 
-    private static void CheckWord(WordList wordList, string word, HashSet<WordList> collectionLists)
+    private static void CheckWord(WordList wordList, WordEntity word, HashSet<WordList> collectionLists)
     {
-        if (wordList.Alphabet.HasAllLiterals(word) || wordList.Count == 5)
+        if (wordList.Alphabet.HasAllLiterals(word.Word))
         {
             wordList.AddWord(word);
 

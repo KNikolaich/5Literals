@@ -10,7 +10,7 @@ internal record SourceFileDictionary : ISourceDictionary
             string[] lines = File.ReadAllLines(fileName);
             foreach (string s in lines
                          .Select(x => x.Trim(' ', '_'))
-                         .Where(x => x.Length == 5 && !x.Contains('-') && x.Distinct().Count() >= 4))
+                         .Where(x => x.Length == 5 && !x.Contains('-') && x.Distinct().Count() == 5))
             {
                 yield return s.ToLower();
             }
