@@ -24,9 +24,8 @@ internal class TreeBuilder
     {
         var collectionLists = new HashSet<WordList>();
         var pastWordList = new List<WordEntity>();
-        foreach (string wordSource in sourceDictionary.GetWords())
+        foreach (var word in sourceDictionary.GetWords())
         {
-            var word = new WordEntity(wordSource.Trim());
             // для каждого слова создаем новую коллекцию, чтобы независимо от предыдущих слов считать
 
             var currentWordList = new WordList(word);
@@ -47,11 +46,8 @@ internal class TreeBuilder
         if (wordList.Alphabet.HasAllLiterals(word.Word))
         {
             wordList.AddWord(word);
-
             // создаем новый worldList, добавляем его в коллекцию и минусуем ему в алфавите буквы
-            var cloneWordList = wordList.Clone();
-
-            collectionLists.Add(cloneWordList);
+            collectionLists.Add(wordList.Clone());
         }
     }
 }

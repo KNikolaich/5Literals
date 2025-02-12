@@ -2,18 +2,13 @@
 
 internal record SourceFileDictionary : ISourceDictionary
 {
-    public IEnumerable<string> GetWords()
+    public IEnumerable<WordEntity> GetWords()
     {
-        var fileName = "russian4.txt";
-        if (File.Exists(fileName))
-        {
-            string[] lines = File.ReadAllLines(fileName);
-            foreach (string s in lines
-                         .Select(x => x.Trim(' ', '_'))
-                         .Where(x => x.Length == 5 && !x.Contains('-') && x.Distinct().Count() == 5))
-            {
-                yield return s.ToLower();
-            }
-        }
+        return File.ReadAllLines("russian4.txt")
+            .Select(x => x.Trim(' ', '_'))
+            .Where(x => x.Length == 5 && !x.Contains('-') && x.Distinct().Count() == 5)
+            .Select(w => new WordEntity(w.ToLower()))
+            //.OrderByDescending(x => x.Wight)
+            ;
     }
 }

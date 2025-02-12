@@ -2,12 +2,12 @@
 
 internal interface ISourceDictionary
 {
-    IEnumerable<string> GetWords();
+    IEnumerable<WordEntity> GetWords();
 }
 
 internal record SourceMemoryDict : ISourceDictionary
 {
-    IEnumerable<string> ISourceDictionary.GetWords()
+    IEnumerable<WordEntity> ISourceDictionary.GetWords()
     {
         return
             @"места
@@ -549,6 +549,7 @@ internal record SourceMemoryDict : ISourceDictionary
 жизнь
 хруст
 тикер
-".Split(Environment.NewLine);
+".Split(Environment.NewLine)
+                .Select(x=> new WordEntity(x));
     }
 }

@@ -46,8 +46,8 @@ internal record WordEntity
 {
     public WordEntity(string word)
     {
-        Word = word;
-        Wight = word.ToCharArray().Sum(x => Alphabet.GetAlphabetFrequency()[x]);
+        Word = word.Trim();
+        Wight = Word.ToCharArray().Sum(x => Alphabet.GetAlphabetFrequency()[x]);
     }
     
     public string Word { get; }

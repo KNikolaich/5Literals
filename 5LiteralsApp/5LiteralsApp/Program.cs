@@ -11,8 +11,9 @@ var trees = TreeBuilder.BuildTrees(new SourceFileDictionary());
 
 // делаем выборку только тех наборов слов, которые максимально покрывают алфавит
 var maximumList = trees
-    .OrderByDescending(x=>x.WightAllWords())
-    .Take(3)
+    .OrderByDescending(x => x.Count)
+    .ThenByDescending(x=>x.WightAllWords())
+    .Take(300)
     .ToList();
 
 // выводим их в консольку
