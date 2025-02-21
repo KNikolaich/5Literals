@@ -37,7 +37,7 @@ internal record Alphabet
         { 'э', 12 },
         { 'ф', 10 },
         { 'ъ', 3 },
-        { 'ё', 1 }
+        //{ 'ё', 1 }
     };
 
     internal Alphabet(List<char> literals)
