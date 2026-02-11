@@ -25,12 +25,19 @@ class Program
         var result = generator.FindBestChains(maxLen);
 
         Console.WriteLine($"Максимально покрыто букв: {result.BestMaskCount}/{WordChainGenerator.RussianAlphabetCount}");
-        Console.WriteLine("Лучшие цепочки (каждая цепочка — слова через запятую):");
-        foreach (var chain in result.BestChains)
+        Console.WriteLine("Лучшие цепочки (отсортированы по весу букв в порядке убывания):\n");
+        
+        // Sort chains by weight descending
+        var sortedChains = result.BestChains.OrderByDescending(c => c.Weight).ToList();
+        
+        foreach (var chain in sortedChains)
         {
-            Console.WriteLine(string.Join(", ", chain));
+            var chainStr = string.Join(", ", chain.Words);
+            Console.WriteLine($"{chainStr} \tВес: {chain.Weight:F4}");            
         }
+        
         Console.ReadKey();
         return 0;
     }
 }
+
