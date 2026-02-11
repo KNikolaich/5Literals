@@ -1,3 +1,6 @@
-/5LiteralsApp/5LiteralsApp/bin
-/5LiteralsApp/5LiteralsApp/obj
+/*/bin
+/*/obj
+/*/*/obj
+/*/*/bin
+
 /5LiteralsApp/.vs
