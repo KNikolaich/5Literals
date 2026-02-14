@@ -23,7 +23,7 @@
             "name": ".NET Run (console)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "run",
+            "preLaunchTask": "build release",
             "program": "${workspaceFolder}/WordChainsGenerator/bin/Debug/net10.0/WordChainsGenerator.dll",
             "args": [
                 "${workspaceFolder}/WordChainsGenerator/words.txt",
