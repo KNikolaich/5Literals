@@ -29,7 +29,7 @@
 			"command": "dotnet",
 			"args": [
 				"test",
-				"..\\WordChainsGenerator\\WordChainsGenerator.Tests\\WordChainsGenerator.Tests.csproj",
+				"..\\WordChainsGenerator.Tests\\WordChainsGenerator.Tests.csproj",
 				"-c",
 				"Release"
 			],
@@ -44,7 +44,7 @@
 			}
 		},
 		{
-			"label": "run",
+			"label": "debug",
 			"type": "shell",
 			"command": "dotnet",
 			"args": [
@@ -52,10 +52,10 @@
 				"--project",
 				".\\WordChainsGenerator\\WordChainsGenerator.csproj",
 				"-c",
-				"Release",
+				"Debug",
 				"--",
 				".\\WordChainsGenerator\\words.txt",
-				"5000"
+				"50"
 			],
 			"group": "test",
 			"presentation": {
