@@ -11,8 +11,8 @@
             "preLaunchTask": "build release",
             "program": "${workspaceFolder}/WordChainsGenerator/bin/Release/net10.0/WordChainsGenerator.dll",
             "args": [
-                "${workspaceFolder}/words.txt"//,
-                // "5"
+                "${workspaceFolder}/WordChainsGenerator/bin/Release/net10.0/words.txt",
+                "50"
             ],
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
@@ -20,10 +20,10 @@
             "internalConsoleOptions": "neverOpen"
         },
         {
-            "name": ".NET Run (console)",
+            "name": ".NET Run (debug)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build release",
+            "preLaunchTask": "build debug",
             "program": "${workspaceFolder}/WordChainsGenerator/bin/Debug/net10.0/WordChainsGenerator.dll",
             "args": [
                 "${workspaceFolder}/WordChainsGenerator/words.txt",

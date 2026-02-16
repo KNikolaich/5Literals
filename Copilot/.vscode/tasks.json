@@ -24,6 +24,29 @@
 			}
 		},
 		{
+			"label": "build debug",
+			"type": "shell",
+			"command": "dotnet",
+			"args": [
+				"build",
+				"--no-restore",	
+				"-c",
+				"Debug"
+			],
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"clear": false
+			}
+		},
+		{
 			"label": "test",
 			"type": "shell",
 			"command": "dotnet",
@@ -44,7 +67,7 @@
 			}
 		},
 		{
-			"label": "debug",
+			"label": "run",
 			"type": "shell",
 			"command": "dotnet",
 			"args": [

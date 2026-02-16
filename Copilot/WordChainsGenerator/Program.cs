@@ -66,7 +66,7 @@ public class Program
         {
             ChainInfo? chain = sortedChains[i];
             var chainStr = string.Join(", ", chain.Words);
-            Console.WriteLine($"{i+1:n4}\t{chainStr} \tВес: {chain.Weight:F4}");            
+            Console.WriteLine($"{i+1:000}\t{chainStr} \tВес: {chain.Weight:F4}");            
         }
 
         // Interactive deletion from words file: user may type "-d <word>" to remove it from words.txt
